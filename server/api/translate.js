@@ -1,5 +1,6 @@
 // RN 앱은 DeepL을 직접 호출하지 않는다. 이 서버리스 함수가 대신 호출해주고
 // DeepL API 키는 여기(서버, Vercel 환경변수)에만 존재한다 — 클라이언트 코드에는 절대 노출되지 않는다.
+// (Root Directory=server 설정이 확실히 반영된 새 배포를 트리거하기 위한 변경)
 module.exports = async function handler(req, res) {
   // RN 앱(다른 origin)에서 이 API를 호출할 수 있도록 CORS 헤더를 열어준다.
   res.setHeader('Access-Control-Allow-Origin', '*');
