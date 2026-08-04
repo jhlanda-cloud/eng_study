@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>오늘의 명언 — 영어 명언 학습 앱</title>
+<meta name="description" content="영어 명언을 읽고, 듣고, 외워서 직접 써보는 개인용 영어 학습 앱." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b2333'/%3E%3Ctext x='32' y='43' font-size='30' text-anchor='middle' fill='%23d8b33b' font-family='Georgia,serif'%3E%E2%80%9C%3C/text%3E%3C/svg%3E" />
+<style>
+  :root {
+    --bg: #f1eee1;
+    --bg-2: #e8e2cf;
+    --panel: #ffffff;
+    --ink: #1e2430;
+    --ink-dim: #6b7180;
+    --accent: #a9791b;
+    --accent-soft: rgba(169, 121, 27, 0.14);
+    --rule: rgba(30, 36, 48, 0.14);
+    --qr-paper: #efe6d2;
+    --qr-ink: #1b2333;
+    --shadow: 0 24px 60px -28px rgba(30, 24, 8, 0.35);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12161f;
+      --bg-2: #171c27;
+      --panel: #1a2030;
+      --ink: #ede8dc;
+      --ink-dim: #9aa2b5;
+      --accent: #d8b33b;
+      --accent-soft: rgba(216, 179, 59, 0.16);
+      --rule: rgba(237, 232, 220, 0.14);
+      --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f1eee1; --bg-2: #e8e2cf; --panel: #ffffff; --ink: #1e2430;
+    --ink-dim: #6b7180; --accent: #a9791b; --accent-soft: rgba(169, 121, 27, 0.14);
+    --rule: rgba(30, 36, 48, 0.14); --shadow: 0 24px 60px -28px rgba(30, 24, 8, 0.35);
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #12161f; --bg-2: #171c27; --panel: #1a2030; --ink: #ede8dc;
+    --ink-dim: #9aa2b5; --accent: #d8b33b; --accent-soft: rgba(216, 179, 59, 0.16);
+    --rule: rgba(237, 232, 220, 0.14); --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(680px 420px at 50% -10%, var(--accent-soft), transparent 65%),
+      var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: clamp(40px, 8vw, 88px) 20px clamp(48px, 8vw, 96px);
+  }
+
+  .hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: clamp(36px, 6vw, 56px);
+  }
+
+  .eyebrow {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(34px, 7vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .tagline {
+    margin: 0;
+    max-width: 46ch;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+  }
+
+  .screenshot-slot {
+    margin: 8px auto 0;
+    width: 220px;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 28px;
+    border: 1.5px dashed var(--rule);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--ink-dim);
+  }
+
+  .screenshot-slot svg { width: 30px; height: 30px; opacity: 0.6; }
+  .screenshot-slot span { font-size: 12px; line-height: 1.5; text-align: center; padding: 0 18px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--panel);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--rule);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .platform-tag {
+    display: inline-flex;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 5px 10px;
+    border-radius: 999px;
+  }
+
+  .card h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .card p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-dim);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover { background: var(--accent); color: #1b1400; }
+
+  .btn-outline {
+    border: 1px solid var(--rule);
+    color: var(--ink);
+  }
+
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .qr-frame {
+    align-self: center;
+    background: var(--qr-paper);
+    border-radius: 14px;
+    padding: 16px;
+    width: 168px;
+    box-shadow: inset 0 0 0 1px rgba(27, 35, 51, 0.08);
+  }
+
+  .qr-frame svg { display: block; width: 100%; height: auto; }
+
+  .caption {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+
+  .manual-url {
+    overflow-x: auto;
+    background: var(--bg-2);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 9px 11px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .note {
+    font-size: 12px;
+    color: var(--ink-dim);
+    line-height: 1.6;
+  }
+
+  footer {
+    margin-top: clamp(40px, 7vw, 64px);
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-dim);
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="hero">
+    <div class="eyebrow">개인용 영어 학습 앱</div>
+    <h1>오늘의 명언</h1>
+    <p class="tagline">영어 명언을 읽고, 듣고, 외워서 직접 써보는 가장 가벼운 영어 학습법이에요.</p>
+
+    <div class="screenshot-slot">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="12" cy="12" r="3.2" /><path d="M8 5l1.2-2h5.6L16 5" /></svg>
+      <span>스크린샷 준비 중<br />곧 실제 화면으로 교체됩니다</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <span class="platform-tag">iOS</span>
+      <h2>Expo Go 앱이 필요해요</h2>
+      <p>iOS는 별도 설치형 앱 대신 Expo Go 안에서 실행하는 방식이에요. 먼저 Expo Go를 설치한 뒤 QR을 스캔하면 앱이 열립니다.</p>
+      <a class="btn btn-outline" href="https://apps.apple.com/app/expo-go/id982107779">App Store에서 Expo Go 받기</a>
+
+      <div class="qr-frame">
+        <svg viewBox="0 0 47 47" shape-rendering="crispEdges" aria-label="Expo Go 실행 QR 코드"><path fill="none" stroke="#1b2333" stroke-width="1" d="M1 1.5h7m4 0h3m2 0h1m4 0h3m2 0h5m1 0h2m2 0h1m1 0h7M1 2.5h1m5 0h1m2 0h3m1 0h1m3 0h1m3 0h5m1 0h3m2 0h1m2 0h1m2 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m1 0h1m3 0h1m3 0h1m3 0h1m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m3 0h4m5 0h2m1 0h4m2 0h2m3 0h1m1 0h2m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h2m6 0h3m1 0h11m1 0h5m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m1 0h6m2 0h3m3 0h1m1 0h1m4 0h3m4 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h4m2 0h2m1 0h1m1 0h1m3 0h4m1 0h4M2 9.5h1m2 0h1m1 0h1m1 0h2m1 0h4m3 0h7m1 0h1m3 0h3m1 0h2m1 0h1m1 0h2m1 0h1M2 10.5h4m2 0h5m1 0h1m1 0h2m1 0h2m2 0h2m2 0h1m1 0h1m1 0h1m1 0h2m2 0h3m3 0h1M1 11.5h2m1 0h1m2 0h1m1 0h2m2 0h4m1 0h4m2 0h2m1 0h3m1 0h2m1 0h1m3 0h6M1 12.5h1m1 0h3m5 0h3m1 0h1m2 0h1m3 0h1m1 0h1m2 0h2m3 0h2m2 0h1m1 0h3m3 0h1M6 13.5h2m6 0h3m1 0h1m1 0h4m1 0h4m2 0h3m1 0h2m3 0h1m3 0h1M1 14.5h1m1 0h4m6 0h1m3 0h2m4 0h2m2 0h2m2 0h2m1 0h2m1 0h1m1 0h2m1 0h1m1 0h1M2 15.5h1m4 0h4m1 0h4m2 0h1m1 0h1m1 0h1m4 0h1m3 0h2m1 0h2m1 0h1m1 0h2m1 0h3M2 16.5h1m1 0h1m4 0h2m1 0h2m2 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m2 0h3m2 0h1m1 0h3M4 17.5h1m1 0h3m3 0h4m1 0h2m2 0h1m4 0h2m2 0h6m3 0h2m4 0h1M2 18.5h1m7 0h3m2 0h1m1 0h4m2 0h3m1 0h5m1 0h2m2 0h4m2 0h2M1 19.5h2m2 0h3m4 0h2m1 0h2m4 0h1m1 0h2m1 0h2m3 0h3m3 0h3m1 0h1m1 0h2M1 20.5h4m1 0h1m1 0h1m1 0h1m1 0h2m1 0h4m1 0h1m3 0h1m1 0h4m1 0h3m1 0h1m1 0h2m5 0h1M4 21.5h7m2 0h4m2 0h8m1 0h2m2 0h2m3 0h6M3 22.5h1m1 0h1m3 0h1m1 0h5m1 0h1m1 0h3m3 0h1m3 0h2m1 0h1m1 0h1m2 0h1m3 0h4M1 23.5h2m2 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m2 0h1M5 24.5h1m3 0h1m3 0h1m2 0h1m1 0h4m3 0h1m1 0h2m1 0h2m1 0h1m1 0h3m3 0h1m2 0h1M1 25.5h1m1 0h1m1 0h5m1 0h7m1 0h7m1 0h2m2 0h1m1 0h2m2 0h6m2 0h1M4 26.5h1m1 0h1m2 0h2m3 0h1m1 0h1m5 0h2m2 0h2m1 0h4m1 0h1m1 0h1m1 0h2m2 0h3M1 27.5h1m1 0h1m3 0h4m5 0h2m2 0h4m2 0h4m1 0h4m5 0h1m3 0h1M1 28.5h2m1 0h1m3 0h2m1 0h1m1 0h1m1 0h5m2 0h1m1 0h1m1 0h3m1 0h1m3 0h2m1 0h5m2 0h1M2 29.5h4m1 0h1m1 0h1m1 0h3m2 0h7m1 0h3m1 0h1m1 0h1m4 0h1m5 0h2m1 0h2M1 30.5h6m3 0h2m1 0h3m1 0h2m1 0h1m2 0h1m1 0h1m2 0h5m1 0h1m3 0h2m3 0h2M1 31.5h2m3 0h3m6 0h1m1 0h1m1 0h1m2 0h2m1 0h3m2 0h5m6 0h1m1 0h2M1 32.5h3m1 0h1m3 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h2m10 0h3m1 0h1m1 0h2m1 0h1m2 0h1M1 33.5h5m1 0h1m1 0h2m1 0h1m2 0h4m1 0h1m2 0h1m2 0h1m3 0h2m1 0h2m6 0h2m2 0h1M1 34.5h1m1 0h1m1 0h2m3 0h5m1 0h2m2 0h1m1 0h2m1 0h1m1 0h2m1 0h2m1 0h2m2 0h1m4 0h2M5 35.5h1m1 0h8m1 0h1m1 0h1m3 0h3m1 0h9m3 0h1m1 0h1m1 0h2M2 36.5h4m3 0h3m3 0h2m1 0h1m3 0h3m2 0h2m1 0h1m1 0h4m1 0h1m1 0h1m1 0h2m1 0h2M1 37.5h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h9m1 0h1m3 0h4m2 0h6m1 0h2M9 38.5h1m1 0h4m3 0h2m1 0h1m3 0h2m1 0h1m2 0h1m1 0h1m3 0h1m3 0h2m1 0h1M1 39.5h7m2 0h2m3 0h2m1 0h1m2 0h1m1 0h1m1 0h5m1 0h1m3 0h3m1 0h1m1 0h4M1 40.5h1m5 0h1m2 0h3m1 0h1m2 0h2m2 0h1m3 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h1m3 0h1M1 41.5h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m1 0h2m1 0h5m2 0h1m2 0h4m2 0h5M1 42.5h1m1 0h3m1 0h1m3 0h5m1 0h2m1 0h5m5 0h2m1 0h1m2 0h1m1 0h1m1 0h6M1 43.5h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h2m2 0h1m3 0h1m4 0h2m1 0h2m1 0h1m1 0h1m2 0h1m1 0h2m1 0h1M1 44.5h1m5 0h1m1 0h4m2 0h1m1 0h1m3 0h1m3 0h2m2 0h2m1 0h2m1 0h3m2 0h2M1 45.5h7m4 0h3m1 0h3m4 0h4m3 0h4m1 0h1m1 0h2m2 0h1m3 0h1"/></svg>
+      </div>
+      <p class="caption">Expo Go 실행 후 QR 스캔</p>
+      <div class="manual-url">exp://u.expo.dev/b34f64ca-c939-4a5e-85a2-fbf249f2a640?channel-name=production</div>
+      <p class="note">QR이 안 열리면 Expo Go 홈 화면의 "Enter URL manually"에 위 주소를 직접 입력하세요.</p>
+    </div>
+
+    <div class="card">
+      <span class="platform-tag">Android</span>
+      <h2>바로 설치할 수 있어요</h2>
+      <p>Expo Go 없이 실행되는 설치형 APK예요. 다운로드 후 "출처를 알 수 없는 앱" 설치를 허용하면 바로 실행할 수 있습니다.</p>
+      <a class="btn btn-primary" href="https://expo.dev/artifacts/eas/Gkmewn8KelWt8N5uNiwW3bWL28Q8iNFR8tBN_azYwTs.apk">APK 다운로드 (Android)</a>
+      <p class="note">다운로드 링크는 2026년 8월 18일까지 유효합니다. 만료 후에는 새 빌드가 필요해요.</p>
+    </div>
+  </div>
+
+  <footer>오늘의 명언 · 개인 학습용 프로젝트</footer>
+</main>
+</body>
+</html>
