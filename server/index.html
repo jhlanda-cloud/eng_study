@@ -276,6 +276,26 @@
     color: var(--ink-dim);
     opacity: 0.8;
   }
+
+  .kakao-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 999px;
+    background: #fee500;
+    color: #191919;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .kakao-btn:hover { background: #f4d900; }
+  .kakao-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .kakao-btn svg { width: 18px; height: 18px; }
 </style>
 </head>
 <body>
@@ -301,6 +321,11 @@
         </div>
       </div>
     </div>
+
+    <button id="kakao-share-btn" class="kakao-btn" type="button">
+      <svg viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.86 1.87 5.37 4.7 6.8-.2.75-.73 2.73-.84 3.16-.14.53.2.52.42.38.17-.1 2.7-1.83 3.8-2.58.62.09 1.26.14 1.92.14 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>
+      카카오톡으로 공유하기
+    </button>
   </div>
 
   <div class="grid">
@@ -329,5 +354,42 @@
 
   <footer>오늘의 명언 · 개인 학습용 프로젝트</footer>
 </main>
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+  Kakao.init('2c1ae4a7f16513418db1238f9927e05b');
+
+  if (!Kakao.isInitialized()) {
+    console.error('Kakao SDK 초기화에 실패했습니다.');
+  }
+
+  document.getElementById('kakao-share-btn').addEventListener('click', function () {
+    var pageUrl = window.location.href;
+
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '오늘의 명언',
+        description:
+          '"Life is like riding a bicycle. To keep your balance, you must keep moving." — Albert Einstein\n' +
+          '삶은 자전거를 타는 것과 같다. 균형을 유지하려면 계속 움직여야 한다.',
+        imageUrl: 'https://eng-study-virid.vercel.app/icon.png',
+        link: {
+          mobileWebUrl: pageUrl,
+          webUrl: pageUrl,
+        },
+      },
+      buttons: [
+        {
+          title: '앱 열어보기',
+          link: {
+            mobileWebUrl: pageUrl,
+            webUrl: pageUrl,
+          },
+        },
+      ],
+    });
+  });
+</script>
 </body>
 </html>
